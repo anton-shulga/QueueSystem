@@ -15,7 +15,8 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
+        String command = new String("");
+        while(!command.equals("exit"))
         try {
             System.out.println("Enter screening probability (for source - p)");
             double p =  Double.parseDouble(reader.readLine());
@@ -31,9 +32,11 @@ public class Main {
             Canal secondCanal = new Canal(p2);
             QueueSystem queueSystem = new QueueSystem(source, storage, firstCanal, secondCanal, tactNumber);
             queueSystem.processRequests();
-            System.out.println("kek");
-        } catch (IOException e) {
-            System.out.print("Check the input data");
+            System.out.println("Press any key to continue or exit to exit");
+            command = reader.readLine();
+        } catch (IOException  | NumberFormatException e) {
+            System.out.println("Check the input data");
+            continue;
         }
     }
 }
